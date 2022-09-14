@@ -15,3 +15,20 @@ var runningSum = function (nums) {
 
   return sums;
 };
+
+// O(n)
+
+var runningSum = function (nums) {
+  //initialize sums array to store sum
+  let sums = [];
+  //initialize sum to store running sum
+  let sum = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    // calculate sum and store in sums array
+    sum += nums[i];
+    sums.push(sum);
+  }
+
+  return sums;
+};
