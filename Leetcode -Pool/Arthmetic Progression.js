@@ -1,8 +1,13 @@
-let map = new Map();
-
-map.set(0, 10);
-map.set(1, 11);
-map.set(2, 12);
-
-console.log(map.has(map.keys(1)));
-console.log(map.keys);
+var canMakeArithmeticProgression = function (arr) {
+  arr.sort((a, b) => a - b);
+  if (arr.length <= 2) {
+    return true;
+  }
+  let diff = arr[1] - arr[0];
+  for (let i = 2; i < arr.length; i++) {
+    if (arr[i] - arr[i - 1] !== diff) {
+      return false;
+    }
+  }
+  return true;
+};
