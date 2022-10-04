@@ -1,31 +1,22 @@
-/**
- * @param {number[][]} coordinates
- * @return {boolean}
- */
 var checkStraightLine = function (coordinates) {
-  let point1 = coordinates[0];
-  let point2 = coordinates[1];
-  let slope = Math.abs(
-    Math.floor((point2[1] - point1[1]) / (point2[0] - point1[0]))
-  );
-  let slope1;
-  for (let i = 0; i < coordinates.length - 1; i++) {
-    point1 = coordinates[i];
-    point2 = coordinates[i + 1];
-    slope1 = Math.abs(
-      Math.floor((point2[1] - point1[1]) / (point2[0] - point1[0]))
-    );
-
-    console.log(slope1, slope);
-    if (slope !== slope1) return false;
+  var x1 = coordinates[0][0];
+  var y1 = coordinates[0][1];
+  var x2 = coordinates[1][0];
+  var y2 = coordinates[1][1];
+  if (x1 == x2 && x1 == 0) {
+    //Slope of X axis is infinite
+    for (var i = 2; i < coordinates.length; i++) {
+      if (coordinates[i][0] != 0) return false;
+    }
+    return true;
   }
 
-  return slope === slope1;
+  var slope = (y2 - y1) / (x2 - x1);
+  for (var i = 2; i < coordinates.length; i++) {
+    var xk = coordinates[i][0];
+    var yk = coordinates[i][1];
+    var newSlope = (yk - y1) / (xk - x1);
+    if (newSlope != slope) return false;
+  }
+  return true;
 };
-
-let coordinates = [
-  [0, 1],
-  [2, 4],
-  [3, 3],
-];
-console.log(checkStraightLine(coordinates));
