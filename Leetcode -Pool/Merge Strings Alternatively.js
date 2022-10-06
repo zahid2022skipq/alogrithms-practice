@@ -12,9 +12,11 @@ var mergeAlternately = function (word1, word2) {
     }
 
     if (word2[i] != undefined) {
-      str + word2[i];
+      str += word2[i];
     }
   }
 
   return str;
 };
+
+console.log(mergeAlternately("abc", "pqr"));
