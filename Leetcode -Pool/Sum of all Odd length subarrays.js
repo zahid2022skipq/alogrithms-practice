@@ -22,6 +22,7 @@ var sumOddLengthSubarrays = function (arr) {
       track += 2;
       i = 0;
       j = track;
+      continue;
     }
     sum += arr[i];
     sum += arr[j];
@@ -31,4 +32,5 @@ var sumOddLengthSubarrays = function (arr) {
   return sum;
 };
 
-console.log(sumOddLengthSubarrays([1, 2, 3, 4, 5]));
+let a = [1, 4, 2, 5, 3];
+console.log(sumOddLengthSubarrays(a));
