@@ -9,11 +9,26 @@ var sumOddLengthSubarrays = function (arr) {
     sum += arr[i];
   }
 
-  let odds = arr.map((x, i) => i % 2 !== 0);
+  let i = 0,
+    j = 2;
+  let track = 2;
+
+  while (track < size) {
+    if (track >= size) {
+      break;
+    }
+
+    if (j === size - 1) {
+      track += 2;
+      i = 0;
+      j = track;
+    }
+    sum += arr[i];
+    sum += arr[j];
+    i++;
+    j++;
+  }
+  return sum;
 };
 
-let arr = [1, 4, 2, 5, 3];
-
-let odds = arr.filter((i, x) => i % 2 !== 0);
-
-console.log(odds);
+console.log(sumOddLengthSubarrays([1, 2, 3, 4, 5]));
