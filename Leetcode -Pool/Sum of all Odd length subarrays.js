@@ -14,18 +14,23 @@ var sumOddLengthSubarrays = function (arr) {
   let track = 2;
 
   while (track < size) {
+    let oddSum = 0;
     if (track >= size) {
       break;
     }
 
-    if (j === size - 1) {
+    if (j >= size) {
       track += 2;
       i = 0;
       j = track;
-      continue;
     }
-    sum += arr[i];
-    sum += arr[j];
+    if (j >= size) {
+      return sum;
+    }
+    for (let k = i; k <= j; k++) {
+      oddSum += arr[k];
+    }
+    sum += oddSum;
     i++;
     j++;
   }
