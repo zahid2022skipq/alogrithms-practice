@@ -3,41 +3,32 @@
  * @param {number[]} travel
  * @return {number}
  */
-var garbageCollection = function (garbage, travel) {
-  let P = 0,
-    G = 0,
-    M = 0;
-  let Pt = 0,
-    Gt = 0,
-    Mt = 0;
-  for (let i = 0; i < garbage.length; i++) {
-    (Gt = 0), (Pt = 0), (Mt = 0);
-    for (let k = 0; k < garbage[i].length; k++) {
-      if (garbage[i][k] === "G") {
-        G++;
-        if (i !== 0 && Gt === 0) {
-          G += travel[i - 1];
-          Gt = 1;
-        }
-      }
-      if (garbage[i][k] === "P") {
-        P++;
-        if (i !== 0 && Pt === 0) {
-          P += travel[i - 1];
-          Pt = 1;
-        }
-      }
-
-      if (garbage[i][k] === "M") {
-        M++;
-        if (i !== 0 && Mt === 0) {
-          M += travel[i - 1];
-          Mt = 1;
-        }
-      }
-    }
+var charCount = function (word) {
+  const ans = { G: 0, M: 0, P: 0 };
+  for (const ch of word) {
+    ans[ch]++;
   }
-  return P + G + M;
+  return ans;
 };
 
-console.log(garbageCollection(["G", "P", "GP", "GG"], [2, 3, 4]));
+var garbageCollection = function (garbage, travel) {
+  const trucks = { G: 0, M: 0, P: 0 };
+  let time = 0;
+
+  for (let i = 0; i < garbage.length; i++) {
+    const freq = charCount(garbage[i]);
+    Object.keys(trucks).forEach((t) => {
+      time += freq[t];
+      if (freq[t]) {
+        for (let j = trucks[t] + 1; j <= i; j++) {
+          trucks[t]++;
+          time += travel[j - 1];
+        }
+      }
+    });
+  }
+
+  return time;
+};
+
+console.log(garbageCollection(["G", "P", "GP", "GG"], [2, 4, 3]));
