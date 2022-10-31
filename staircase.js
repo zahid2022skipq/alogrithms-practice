@@ -28,4 +28,7 @@ const stairCase = (n) => {
 
   return next;
 };
-console.log(stairCase(10));
+let n = 4;
+console.log(stairCase(n));
+
+console.log(n + n + 1);
